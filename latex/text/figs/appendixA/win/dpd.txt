@@ -1,0 +1,18 @@
+Digital Phase Detector
+
+The key portion of the following circuit is the CD4066 quad bilateral switch, connected as a switching type phase sensitive detector. 
+
+System timing is derived from a 25.6Mhz crystal clock.  The clock is divided by two presetable 8 bit dividers, type 74ALS867A.  One of the two is preset at the terminal count and the other is programmable by a circuit board mounted DIP switch.  The 100Khz output of the preset divider, U2, is buffered by opamp U4B to allow external monitoring of the clock.
+
+By applying these two phase adjustable 100Khz clocks to two opposing quadrants of the detector, a DC error voltage may be derived during nonsynchronous periods in signal applied to the external input port.  The input from the squid preamp is applied to 1 and 8 of the detector with reference to common at pins 4 and 11.  U4a amplifies the error voltage and damps spurious harmonics by the use of  C3.
+
+To set up the proper phase relationship between clock quadrants;
+
+1.	Remove all AC bias from the squid.
+
+2.	Set the experimental baseline state in the squid, normal or not.
+
+3.	Set the shift code for U1 (using the DIP switch S1) so  that the error voltage output from the 
+detector is zero.  Note that switch nine is a phase reversal switch.
+
+This completes the setup procedure.  Any phase shifts in the input signal from the normal state will produce a bipolar error voltage proportional to the phase error between the system clock and the squid signal.

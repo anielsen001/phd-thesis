@@ -1,0 +1,63 @@
+\special{papersize=8.5in,11in}
+
+% chap.tex
+% just to print out one chapter of the thesis and get the 
+% bibliography and other things correct
+
+\documentclass[12pt,letterpaper]{book}    % for either Masters or PhD
+\pagestyle{plain}
+\renewcommand{\baselinestretch}{1.5}
+% include packages as needed
+\usepackage{makeidx,longtable}
+\usepackage[dvips]{graphicx,color}
+%\usepackage{amstex}
+%
+
+% the latin.tex file contains important definitions and
+% substitution commands
+\input{latin}
+
+% This sets single spacing.  Comment out for double spacing.
+%\spacing{1}
+%===============
+%
+\title{PARAMAGNETISM IN MULTIPLY \\
+CONNECTED SUPERCONDUCTORS
+}
+%
+%===============
+%
+% Give the author
+%
+\author{Aaron Philip Nielsen}
+%
+
+
+% Start the document
+%
+\begin{document}
+%
+% make the title page and so forth
+%
+\maketitle
+%
+%
+% Thesis goes here
+
+
+
+\input{jjarray}
+
+
+
+% Enter the name of bibtex  bibliography database, if you wish
+\bibliography{squidboxdoc,thesis}
+\bibliographystyle{apsrev}
+
+
+
+\end{document}
+
+
+
+

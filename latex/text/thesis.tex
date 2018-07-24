@@ -1,0 +1,201 @@
+\special{papersize=8.5in,11in}
+
+% thesis.tex
+%%%%%
+% Sample Thesis file modified according to changes implemented by 
+% graduate school  in summer 1997 
+% Stefan Kehrbaum
+% works only with documentclass umd-thesis.cls
+% to be compiled with latex2e
+% original version due to Thomas J. Stone and  Aaron E Naiman
+%
+%
+%===============
+%===============
+%
+% First define the document class or document style
+%
+\documentclass[12pt,letterpaper]{umd-thesis}    % for either Masters or PhD
+% include packages as needed
+\usepackage{makeidx,longtable}
+\usepackage[dvips]{graphicx,color}
+\usepackage{afterpage}
+\usepackage{ifthen}
+%\usepackage{amstex}
+%
+
+% the latin.tex file contains important definitions and
+% substitution commands
+\input{latin}
+
+% This sets single spacing.  Comment out for double spacing.
+%\spacing{1}
+%===============
+%
+% Is it a Masters thesis or a PhD dissertation?  (default is PhD)
+%
+%  LaTeX2e and umd-thesis.cls
+\setboolean{masters}{false}     % PhD degree
+%\setboolean{masters}{true}     % Masters degree
+%  Latex209 and dissertation.sty
+%      --choose \documentstyle{dissertation} for PhD above
+%      --choose \documentstyle[masters]{dissertation} for Masters above
+%
+% If Masters, set the kind of Masters
+%
+%\masterof{Arts}
+%\masterof{Science}
+%
+%===============
+%
+%% Give the title in all CAPS 
+%
+\title{MAGNETISM IN MULTIPLY \\
+CONNECTED SUPERCONDUCTORS
+}
+%
+%===============
+%
+% Give the author
+%
+\author{Aaron Philip Nielsen}
+%
+%===============
+%
+% Give the department
+%
+\department{Department of Physics}
+%
+%===============
+%
+% Give your advisor
+%
+\advisor{Professor Christopher J. Lobb}
+%
+%===============
+%
+% Give your advisor's title.  The default is Chairman/Advisor
+%
+\chairtitle{Chairman/Advisor}
+%\chairtitle{Chairperson/Advisor}
+%
+%===============
+%
+% Give your committee (don't include advisor's name)
+%
+\committee{Associate Professor Steven Anlage\\
+           Associate Professor Frederick C. Wellstood\\
+           Assistant Professor Paola Barbara, Georgetown University\\
+           Assistant Professor Romel Gomez, Electrical Engineering  
+                }
+%
+%===============
+%
+% Give a dedication if you have one.
+%
+\dedication{To my father}    
+%
+%===============
+%
+% Do you have figures?  tables?  a copyright?
+%
+%  LaTeX2e and umd-thesis.cls
+\setboolean{hasfigures}{true}
+%\setboolean{hasfigures}{false}
+\setboolean{hastables}{true}
+%\setboolean{hastables}{false}
+%\setboolean{hascopyright}{false}
+\setboolean{hascopyright}{true}
+%  LaTeX209 and dissertation.sty
+%\hasfigures{true}
+%\hasfigures{false}
+%\hastables{true}
+%\hastables{false}
+%\hascopyright{false}
+%\hascopyright{true}
+%
+%===============
+%
+% Give the name of of a file containing your abstract.
+%
+\abstractfile{abstract.tex}
+%
+%===============
+%
+% Give your acknowledgments (if you want some)
+%
+\input{acknowledgement}
+%
+%===============
+%
+% Give the name of a file containing your preface (if you have one)
+%
+%\prefacefile{my_preface_file}
+%
+%===============
+%
+% Give the year of the dissertation/thesis (default is current year)
+%
+\date{2001}
+%
+%===============
+%
+%
+%
+\makeindex
+
+\makeglossary
+
+% Start the document
+%
+\begin{document}
+%
+% make the title page and so forth
+%
+\makefrontmatter
+%
+%
+% Thesis goes here
+
+\input{introduction}
+
+\input{jjarray}
+
+\input{pme}
+
+\input{pme_theory}
+
+\input{magpen}
+
+\input{prospective}
+
+% begin the appendix
+\appendix 
+
+\input{ssm/ssm}
+
+%\chapter{Scanning SQUID Documentation}
+%\input{ssm/squidboxdoc}
+
+%\chapter{Experimental Procedure}
+%\input{ssm/expproc}
+
+%\input{cdindex}
+
+\addcontentsline{toc}{chapter}{Bibliography}
+
+% Enter the name of bibtex  bibliography database, if you wish
+\bibliography{squidboxdoc,thesis,rabits,ratchets,soc}
+\bibliographystyle{apsrev}
+
+
+
+%\include{glossary}
+
+\printindex
+
+\end{document}
+
+
+
+

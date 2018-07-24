@@ -1,0 +1,121 @@
+
+\newcommand{\gpiblist}[2]{
+ \parbox[t]{2.7in}{\renewcommand{\baselinestretch}{1.}
+  \normalsize
+  \sloppy #1 \\* \emph{Output}:#2 } 
+}        
+
+\newcommand{\rangelist}[1]{
+ \parbox[t]{1in}{\renewcommand{\baselinestretch}{1.}
+  \normalsize
+  \sloppy #1}
+}
+
+\begin{longtable}{l|l|l}
+\caption[\squidbox\ GPIB Commands]{
+This is a listing of the GPIB commands accepted by the
+\squidbox. The commands may be sent to the \squidbox, and
+the appropriate action will be taken. If you query the \squidbox, it will
+respond with the requested value.} \\ 
+\hline   
+\label{table:gpibcommands}
+\textbf{Command} & \textbf{Description} & \textbf{Range}\\
+\hline
+\endfirsthead
+\caption[]{\emph{GPIB commands continued}} \\
+\hline
+\textbf{Command} & \textbf{Description} & \textbf{Range} \\
+\hline
+\endhead
+\hline
+\multicolumn{2}{r}{\emph{continued on next page}}
+\endfoot
+\hline
+\endlastfoot
+``SCAND,I" &  \gpiblist{Set Scan Direction to I }{None} 
+   &\rangelist{0=Horizontal\\ 1=Vertical} \\
+``CRASHD,I" & \gpiblist{Set Crash Detection to I }{None} & 
+  \rangelist{0=Off \\ 1=On}\\
+``RPOTS,I"  & \gpiblist{Set to record pot positions to I }{None} &
+\rangelist{0=Off \\ 1=On}\\
+``SCANXV,X"  & \gpiblist{Set Xvelocity1 (forward scan) to X}{None} & \\
+``SCANYV,Y"  & \gpiblist{Set Yvelocity1 (forward scan) to Y}{None}& \\
+``SCANXA,X" & \gpiblist{Set Xaccel1 (forward scan) to X}{None}& \\
+``SCANYA,Y" & \gpiblist{Set Yaccel1 (forward scan) to Y}{None}& \\
+``BSCANXV,X" & \gpiblist{Set Xvelocity2 (back retrace) to X}{None}& \\
+``BSCANYV,Y" & \gpiblist{Set Yvelocity2 (back retrace) to Y}{None}& \\
+``BSCANXA,X" & \gpiblist{Set Xaccel2 (back retrace) to X}{None}& \\
+``BSCANYA,Y" & \gpiblist{Set Yaccel2 (back retrace) to Y}{None}& \\
+``NUMROWS,I" & \gpiblist{Set NumRows (data points per scan line) to I}{None}&\\
+``NUMCOLS,I" & \gpiblist{Set NumColumns (number of scan lines) to I}{None}&\\
+``STARTUL,X,Y" & \gpiblist{Set Start Upper Left Coordinates to X, Y}{None}&\\
+``ENDLR,X,Y"   & \gpiblist{Set End Lower Right Coordinates to X,Y}{None}&\\
+``*IDN?,"      & \gpiblist{Simple Identification Query}{``Model 1.0 SQUIDBOX"}&\\
+``SCAND?,"     & \gpiblist{Scan\_Direction Query}{``Scan\_Direction"}&\\
+``CRASHD?,"    & \gpiblist{Crash\_Detect Query}{``Crash\_Detect"}&\\
+``RPOTS?,"     & \gpiblist{Record\_Pots Query}{``Record\_Pots"}&\\
+``SCANXV?,"    & \gpiblist{Xvelocity1 Query}{``Xvelocity1"}&\\
+``SCANYV?,"    & \gpiblist{Yvelocity1 Query}{``Yvelocity1"}&\\
+``SCANXA?,"    & \gpiblist{Xaccel1 Query}{``Xaccel1"}&\\
+``SCANYA?,"    & \gpiblist{Yaccel1 Query}{``Yaccel1"}&\\
+``BSCANXV?,"   & \gpiblist{Xvelocity2 Query}{``Xvelocity2"}&\\
+``BSCANYV?,"   & \gpiblist{Yvelocity2 Query}{``Yvelocity2"}&\\
+``BSCANXA?,"   & \gpiblist{Xaccel2 Query}{``Xaccel2"}&\\
+``BSCANYA?,"   & \gpiblist{Yaccel2 Query}{``Yaccel2"}&\\
+``NUMROWS?,"   & \gpiblist{NumRows Query}{``NumRows"}&\\
+``NUMCOLS?,"   & \gpiblist{NumColumns Query}{``NumColumns"}&\\
+``STARTUL?,"   & \gpiblist{Start Upper Left Coordinates Query}{``StartULx,StartULy"}&\\
+``ENDLR?,"     & \gpiblist{End Lower Right Query}{``EndLRx,EndLRy"}&\\
+``XY?,"        & \gpiblist{Current Position Query}{``X,Y"}&\\
+``PRETENSION," & \gpiblist{Pretension Command. This command is deprecated.
+it is better to do this using the GOTOXY command. The pretension command moves
+to Start X+6000,Y and may be dangerous to do if you are not careful.}{None}&\\
+"START,"      & \gpiblist{Start Scanning}{``STARTSCAN" or ``NOSCAN"}&\\
+``GOTOXY,X,Y'' & \gpiblist{Move SQUID to position X,Y}{None}&\\
+``STATUS?''  & \gpiblist{Ask the controller what it's doing.}{1 if moving,
+0 if doing nothing}&\\
+\end{longtable}
+
+
+The GPIB Primary Address is set to 6, but can be changed.
+    Just redefine \CompVar{ADDRESS} at the top of the program.  
+
+A file is created called \CompFile{gpibout.dat} which will allow 
+    recording of status variables (\eg\ \CompVar{gpib\_readpending}, 
+    \CompVar{gpib\_writepending}, \CompVar{gpib\_readbuf}, etc.) 
+to assist in debugging.  
+
+The scanning mode is somewhat complicated.
+    The controller-\squidbox\ dialog is essentially the following 
+    (for a single channel scan):\\
+\begin{tabular}{l|l} 
+\label{table:scanningdialog}   
+    \textbf{Controller Command} & \textbf{\squidbox\ Response} \\ \hline
+    \CompVar{"START,"}		& \CompVar{"STARTSCAN"} \\
+    				& \CompVar{"FILES,1"} \\
+    \CompVar{"FILE1,NAME?"}	& \CompVar{"data10.asc"}  \\
+    \CompVar{"SEND,"} & \\	
+\end{tabular}	
+	
+    At this point the interrupt routine is disabled on the \squidbox,
+    and the \CompVar{ibwrtf-ibrdf} 
+    file transfer is initiated.  The full sequence
+    for a series of channels or potentiometer files continues
+    the above sequence until all files are read.  
+  
+\subsubsection{Known Bugs}
+\index{bugs,software!GPIB}
+\label{GPIBbugs}
+
+\index{bugs,software!GPIB!lock up after scan}
+In GPIB mode the \squidbox\ will sometimes hang at the end of a 
+scan, without responding to the GPIB controller. This can be worked
+around by manually sending an arbitrary command to the \squidbox.
+However, after sending the arbitrary command
+we will have to manually copy the data files from
+the \squidbox\ over to the GPIB controller. 
+
+\index{bugs,software!GPIB!scan abort}
+Also, aborting the scan might cause problems with \squidbox.
+The error handling routines are not yet adequate.
+

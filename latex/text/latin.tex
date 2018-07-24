@@ -1,0 +1,132 @@
+% this document contains some simple substituions as well
+% as function defintions
+% it requires the use of latex2e
+
+% these are common latin abbreviations
+
+% 19 March 2001
+%	fixed some small problems with math mode
+
+\newcommand{\trademark}{\ensuremath{^{\mbox{\scriptsize\textsc{tm}}}}}
+
+\newcommand{\ala}{\textit{\`{a} la}}
+\newcommand{\apriori}{\textit{a priori}}
+\newcommand{\cf}{{\it c.f.}}
+\newcommand{\eg}{{\it e.g.}}
+\newcommand{\etal}{{\it et al.}}
+\newcommand{\ie}{{\it i.e.}}
+\newcommand{\insitu}{\textit{in situ}}
+\newcommand{\intoto}{\textit{in toto}}
+\newcommand{\visavis}{\textit{vis-\`{a}-vis}}
+\newcommand{\vs}{{\it vs.}}
+
+% these are constructions for common units
+% generally these must be used in math mode
+%
+% length measurements
+\newcommand{\mm}{\mathrm{mm}}
+\newcommand{\nm}{\mathrm{nm}}
+\newcommand{\micron}{\ensuremath{\mu\mathrm{m}}}
+\newcommand{\angstrom}{\ensuremath{\mbox{\AA}}}
+\newcommand{\inch}{\ensuremath{\mbox{''}}}
+
+% temperature measurements
+\newcommand{\kelvin}{\ensuremath{\mathrm{K}}}
+
+% field measurements
+\newcommand{\mOe}{\ensuremath{\mathrm{mOe}}}
+\newcommand{\Oe}{\ensuremath{\mathrm{Oe}}}
+\newcommand{\mGauss}{\ensuremath{\mathrm{mG}}}
+\newcommand{\Gauss}{\ensuremath{\mathrm{G}}}
+
+% frequency measurements
+\newcommand{\Hz}{\ensuremath{\mathrm{Hz}}}
+\newcommand{\kHz}{\ensuremath{\mathrm{kHz}}}
+
+% these are constructions for useful abbreviations
+%\newcommand{\lhe}{\ensuremath{\ell \mathrm{He}}}
+\newcommand{\lhe}{liquid helium}
+%\newcommand{\lnit}{\ensuremath{\ell \mathrm{N}_2}}
+\newcommand{\lnit}{liquid nitrogen}
+
+\newcommand{\ybco}{\ensuremath{\mathrm{YBa}_2\mathrm{Cu}_3\mathrm{O}_{7-\delta}}}
+\newcommand{\ybcoheading}{\ensuremath{\mathbf{YBa}_2\mathbf{Cu}_3\mathbf{O}_{7-\delta}}}
+
+\newcommand{\rabits}{RABiTS\trademark}
+
+\newcommand{\tc}{\ensuremath{T_c}}
+\newcommand{\lowtc}{low \tc}
+\newcommand{\hightc}{high \tc}
+%\newcommand{\hightcheading}{high \tc}
+
+%\newcommand{\swave}{\ensuremath{s-\mathrm{wave}}}
+\newcommand{\swave}{\ensuremath{s}-wave}
+%\newcommand{\dwave}{\ensuremath{d-\mathrm{wave}}}
+\newcommand{\dwave}{\ensuremath{d}-wave}
+
+%\newcommand{\pijunction}{\ensuremath{\pi-\mathrm{junction}}}
+\newcommand{\pijunction}{\ensuremath{\pi}-junction}
+%\newcommand{\pijunctions}{\ensuremath{\pi-\mathrm{junctions}}}
+\newcommand{\pijunctions}{\ensuremath{\pi}-junctions}
+
+\newcommand{\hcone}{\ensuremath{H_{c1}}}
+\newcommand{\hctwo}{\ensuremath{H_{c2}}}
+
+% these constructions make equations look much prettier
+\newcommand{\me}{\ensuremath{\mathrm{e}}}
+\newcommand{\mi}{\ensuremath{\mathrm{i}}}
+\newcommand{\dif}{\ensuremath{\mathrm{d}}}
+
+% these are constructions which are useful for writing about
+% the SQUID microscope and flux and other superconductor/jj array
+% parameters
+\newcommand{\squid}{SQUID}
+\newcommand{\phiext}{\ensuremath{\phi_{\mathrm{ext}}}}
+\newcommand{\phitot}{\ensuremath{\phi}}
+\newcommand{\phimag}{\ensuremath{\phi_{\mathrm{mag}}}}
+\newcommand{\phidia}{\ensuremath{\Phi_{\mathrm{diamagnetic}}}}
+\newcommand{\phipara}{\ensuremath{\Phi_{\mathrm{paramagnetic}}}}
+\newcommand{\phiscr}{\ensuremath{\Phi_{\mathrm{scr}}}}
+\newcommand{\phioff}{\ensuremath{\Phi_{\mathrm{off}}}}
+\newcommand{\Phitot}{\ensuremath{\Phi}}
+\newcommand{\Phiext}{\ensuremath{\Phi_{\mathrm{ext}}}}
+\newcommand{\Phimag}{\ensuremath{\Phi_{\mathrm{mag}}}}
+%\newcommand{\phinot}{\ensuremath{\ensuremath{\Phi_0}}}
+\newcommand{\Phinot}{\ensuremath{\Phi_0}}
+\newcommand{\betal}{\ensuremath{\beta_\ell}}
+\newcommand{\betac}{\ensuremath{\beta_c}}
+
+% create some text formats to use for referring to computer related
+% things. i.e.: files and variables
+\newcommand{\CompFile}[1]{\texttt{#1}}
+\newcommand{\CompVar}[1]{\texttt{#1}}
+
+% these functions generate a consistent feel for referering to
+% figures, tables, etc. 
+
+% chapter name refs
+\newcommand{\chapname}[1]{\textit{#1}}
+
+% references
+\newcommand{\InLineRef}[1]{Ref.~\protect\cite{#1}}
+
+% tables
+\newcommand{\TabRef}[1]{Table~\protect\ref{#1}}
+
+% figures
+\newcommand{\FigRef}[1]{Fig.~\protect\ref{#1}}
+\newcommand{\MultFigRef}[2]{\FigRef{#1}(#2)}
+
+% equations
+\newcommand{\EqnRef}[1]{(\protect\ref{#1})}
+\newcommand{\MultEqnRef}[2]{\EqnRef{#1}(#2)}
+
+% this command should be deprecated, but needs to be replaced in the text
+\newcommand{\jj}{Josephson-junction}
+
+\newcommand{\jjadj}{Josephson-junction}
+\newcommand{\jjnoun}{Josephson junction}
+\newcommand{\jjsnoun}{Josephson junctions}
+\newcommand{\jja}{\jjadj\ array}
+\newcommand{\jjas}{\jjadj\ arrays}
+\newcommand{\ssm}{scanning SQUID microscope}
